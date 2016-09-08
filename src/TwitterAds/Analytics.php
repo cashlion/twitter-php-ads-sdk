@@ -35,19 +35,20 @@ class Analytics extends Resource
     public static function all_stats(Account $account, $ids, $metricGroups, $params = [])
     {
         $endTime = isset($params['end_time']) ? $params['end_time'] : new \DateTime('now');
-        $endTime->setTime($endTime->format('H'), 0, 0);
+        //$endTime->setTime($endTime->format('H'), 0, 0);
         $startTime = isset($params['start_time']) ? $params['start_time'] : new \DateTime($endTime->format('c')." - 7 days");
-        $startTime->setTime($startTime->format('H'), 0, 0);
+        //$startTime->setTime($startTime->format('H'), 0, 0);
         $granularity = isset($params['granularity']) ? $params['granularity'] : Enumerations::GRANULARITY_HOUR;
         $placement = isset($params['placement']) ? $params['placement'] : Enumerations::PLACEMENT_ALL_ON_TWITTER;
         $segmentationType = isset($params['segmentation_type']) ? $params['segmentation_type'] : null;
+        $entity = $params['entity'];
 
         $params = [
             'metric_groups' => implode(",", $metricGroups),
-            'start_time' => $startTime->format('c'),
-            'end_time' => $endTime->format('c'),
+            'start_time' => $startTime,
+            'end_time' => $endTime,
             'granularity' => $granularity,
-            'entity' => static::ENTITY,
+            'entity' => $entity,
             'entity_ids' => implode(",", $ids),
             'placement' => $placement,
         ];
