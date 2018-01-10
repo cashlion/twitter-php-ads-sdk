@@ -22,7 +22,6 @@ use Hborras\TwitterAdsSDK\TwitterAds\Fields\AccountFields;
 
 class Account extends Analytics
 {
-
     const RESOURCE_REPLACE          = '{account_id}';
     const RESOURCE_COLLECTION       = 'accounts';
     const RESOURCE                  = 'accounts/{account_id}';
